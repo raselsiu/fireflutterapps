@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "280360539930",
+    "project_id": "myapps-f43aa",
+    "storage_bucket": "myapps-f43aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280360539930:android:35feb22dab8ebe1ca47ea3",
+        "android_client_info": {
+          "package_name": "com.example.fireapps"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPwH74wSrTNcdYPCF7vZNBLI2Z9LKCJ4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
