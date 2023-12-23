@@ -110,16 +110,16 @@ class _HomePageState extends State<HomePage> {
       body: StreamBuilder<QuerySnapshot>(
         stream: _usersStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          // if (snapshot.hasError) {
-          //   return const Text('Something went wrong');
-          // }
-          //
-          // if (snapshot.connectionState == ConnectionState.waiting) {
-          //   return const CircularProgressIndicator(
-          //     color: Colors.red,
-          //     backgroundColor: Colors.purple,
-          //   );
-          // }
+          if (snapshot.hasError) {
+            return const Text('Something went wrong');
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator(
+              color: Colors.red,
+              backgroundColor: Colors.purple,
+            );
+          }
 
           return ListView(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
@@ -127,44 +127,42 @@ class _HomePageState extends State<HomePage> {
               Map<String, dynamic> data =
                   document.data()! as Map<String, dynamic>;
 
-              return Container(
-                child: Card(
-                  color: Colors.indigo,
-                  elevation: 5,
-                  margin: const EdgeInsets.all(15),
-                  child: ListTile(
-                      title: Text(
-                        data['title'],
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                      subtitle: Text(
-                        data['description'],
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              openNoteBox(docID: docID);
-                            },
-                            icon: const Icon(
-                              Icons.settings,
-                              color: Colors.white,
-                            ),
+              return Card(
+                color: Colors.indigo,
+                elevation: 5,
+                margin: const EdgeInsets.all(15),
+                child: ListTile(
+                    title: Text(
+                      data['title'],
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                    subtitle: Text(
+                      data['description'],
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            openNoteBox(docID: docID);
+                          },
+                          icon: const Icon(
+                            Icons.settings,
+                            color: Colors.white,
                           ),
-                          IconButton(
-                            onPressed: () {
-                              fireStoreService.deleteNote(docID);
-                            },
-                            icon: const Icon(
-                              Icons.delete,
-                              color: Colors.redAccent,
-                            ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            fireStoreService.deleteNote(docID);
+                          },
+                          icon: const Icon(
+                            Icons.delete,
+                            color: Colors.redAccent,
                           ),
-                        ],
-                      )),
-                ),
+                        ),
+                      ],
+                    )),
               );
             }).toList(),
           );
