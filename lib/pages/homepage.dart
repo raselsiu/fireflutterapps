@@ -115,9 +115,11 @@ class _HomePageState extends State<HomePage> {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator(
-              color: Colors.red,
-              backgroundColor: Colors.purple,
+            return const Center(
+              child: CircularProgressIndicator(
+                color: Colors.red,
+                backgroundColor: Colors.purple,
+              ),
             );
           }
 
