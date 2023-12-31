@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fireapps/pages/lockpage.dart';
 import 'package:fireapps/services/firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -24,19 +25,9 @@ class _HomePageState extends State<HomePage> {
       context: context,
       builder: (context) => AlertDialog(
         content: SizedBox(
-          height: 300,
+          height: MediaQuery.of(context).size.height / 2,
           child: Column(
             children: [
-              TextField(
-                controller: _titleTextController,
-                decoration: const InputDecoration(
-                  hintText: 'Questions',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
               TextField(
                 controller: _categoryTextController,
                 decoration: const InputDecoration(
@@ -48,7 +39,17 @@ class _HomePageState extends State<HomePage> {
                 height: 5,
               ),
               TextField(
-                maxLines: 4,
+                controller: _titleTextController,
+                decoration: const InputDecoration(
+                  hintText: 'Questions',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              TextField(
+                maxLines: 3,
                 controller: _descTextController,
                 decoration: const InputDecoration(
                   hintText: 'Answer',
@@ -83,7 +84,7 @@ class _HomePageState extends State<HomePage> {
               _categoryTextController.clear(),
               Navigator.pop(context),
             },
-            child: const Text('Add'),
+            child: const Text('Add to Firebase'),
           )
         ],
       ),
@@ -101,8 +102,23 @@ class _HomePageState extends State<HomePage> {
           Icons.ac_unit,
           color: Colors.white,
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.logout,
+              color: Colors.white,
+            ),
+            tooltip: 'Show Snackbar',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const LockPage()),
+              );
+            },
+          ),
+        ],
         title: const Text(
-          'Firebase Testing',
+          'Dashboard',
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.purple,
@@ -110,24 +126,6 @@ class _HomePageState extends State<HomePage> {
       body: StreamBuilder<QuerySnapshot>(
         stream: _usersStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          // Data Test for category wise view
-
-          // FirebaseFirestore.instance
-          //     .collection('bangla')
-          //     .where('category', isEqualTo: 'mango')
-          //     .get()
-          //     .then((QuerySnapshot querySnapshot) {
-          //   final count = querySnapshot.size;
-          //   if (count == 0) {
-          //     print('No data found!');
-          //   }
-          //   querySnapshot.docs.forEach((doc) {
-          //     print(doc['category']);
-          //   });
-          // });
-
-          // Dummy
-
           if (snapshot.hasError) {
             return const Text('Something went wrong');
           }
@@ -152,15 +150,17 @@ class _HomePageState extends State<HomePage> {
                   return Card(
                     color: Colors.indigo,
                     elevation: 5,
-                    margin: const EdgeInsets.all(15),
+                    margin: const EdgeInsets.all(10),
                     child: ListTile(
                         title: Text(
                           data['questions'],
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 12),
                         ),
                         subtitle: Text(
                           data['answer'],
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 12),
                         ),
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -198,6 +198,7 @@ class _HomePageState extends State<HomePage> {
         },
         child: const Icon(Icons.add),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
