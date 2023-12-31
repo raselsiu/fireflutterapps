@@ -2,13 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FireStoreService {
 // Get collections of notes
-  final CollectionReference notes =
-      FirebaseFirestore.instance.collection('notes');
+  final CollectionReference book =
+      FirebaseFirestore.instance.collection('bangla');
 // CREATE: add a new note
-  Future<void> addNotes(String title, String description, String category) {
-    return notes.add({
-      'title': title,
-      'description': description,
+  Future<void> addNotes(String questions, String answer, String category) {
+    return book.add({
+      'questions': questions,
+      'answer': answer,
       'category': category,
       'timestamp': Timestamp.now(),
     });
@@ -16,16 +16,16 @@ class FireStoreService {
 
 // READ: get notes from database
   Stream<QuerySnapshot> getNotesStream() {
-    final noteStream = notes.orderBy('timestamp', descending: true).snapshots();
+    final noteStream = book.orderBy('timestamp', descending: true).snapshots();
     return noteStream;
   }
 
 // UPDATE: update notes given a doc id
   Future<void> updateNote(
-      String docID, String title, String description, String category) {
-    return notes.doc(docID).update({
-      'title': title,
-      'description': description,
+      String docID, String questions, String answer, String category) {
+    return book.doc(docID).update({
+      'questions': questions,
+      'answer': answer,
       'category': category,
       'timestamp': Timestamp.now(),
     });
@@ -33,6 +33,6 @@ class FireStoreService {
 // DELETE: delete note given a doc id
 
   Future<void> deleteNote(String docID) {
-    return notes.doc(docID).delete();
+    return book.doc(docID).delete();
   }
 }

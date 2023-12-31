@@ -50,19 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCPwH74wSrTNcdYPCF7vZNBLI2Z9LKCJ4w',
-    appId: '1:280360539930:android:35feb22dab8ebe1ca47ea3',
-    messagingSenderId: '280360539930',
-    projectId: 'myapps-f43aa',
-    storageBucket: 'myapps-f43aa.appspot.com',
+    apiKey: 'AIzaSyC3U8Yuc1Ffm6-IK592Ft2H5L84M2EL2B4',
+    appId: '1:791715107390:android:e9e00c13d01bd07ecef76f',
+    messagingSenderId: '791715107390',
+    projectId: 'rslbanglaapps',
+    storageBucket: 'rslbanglaapps.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAAUUR4jCmABjU5ISc3BVsBLFl0G_kc4-o',
-    appId: '1:280360539930:ios:ed78440e8651c539a47ea3',
-    messagingSenderId: '280360539930',
-    projectId: 'myapps-f43aa',
-    storageBucket: 'myapps-f43aa.appspot.com',
+    apiKey: 'AIzaSyDez7tEJGwqWDJVWq8JKb5f3EL_64gquPU',
+    appId: '1:791715107390:ios:d30d555642c5b2b2cef76f',
+    messagingSenderId: '791715107390',
+    projectId: 'rslbanglaapps',
+    storageBucket: 'rslbanglaapps.appspot.com',
     iosBundleId: 'com.example.fireapps',
   );
 }

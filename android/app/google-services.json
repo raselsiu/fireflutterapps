@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "280360539930",
-    "project_id": "myapps-f43aa",
-    "storage_bucket": "myapps-f43aa.appspot.com"
+    "project_number": "791715107390",
+    "project_id": "rslbanglaapps",
+    "storage_bucket": "rslbanglaapps.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:280360539930:android:35feb22dab8ebe1ca47ea3",
+        "mobilesdk_app_id": "1:791715107390:android:e9e00c13d01bd07ecef76f",
         "android_client_info": {
           "package_name": "com.example.fireapps"
         }
@@ -15,7 +15,26 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCPwH74wSrTNcdYPCF7vZNBLI2Z9LKCJ4w"
+          "current_key": "AIzaSyC3U8Yuc1Ffm6-IK592Ft2H5L84M2EL2B4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791715107390:android:f20ec9a90037bc0ecef76f",
+        "android_client_info": {
+          "package_name": "com.mybanglaproject.bangla"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3U8Yuc1Ffm6-IK592Ft2H5L84M2EL2B4"
         }
       ],
       "services": {

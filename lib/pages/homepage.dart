@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
               TextField(
                 controller: _titleTextController,
                 decoration: const InputDecoration(
-                  hintText: 'Title',
+                  hintText: 'Questions',
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
                 maxLines: 4,
                 controller: _descTextController,
                 decoration: const InputDecoration(
-                  hintText: 'Description',
+                  hintText: 'Answer',
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   final Stream<QuerySnapshot> _usersStream =
-      FirebaseFirestore.instance.collection('notes').snapshots();
+      FirebaseFirestore.instance.collection('bangla').snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -110,6 +110,24 @@ class _HomePageState extends State<HomePage> {
       body: StreamBuilder<QuerySnapshot>(
         stream: _usersStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          // Data Test for category wise view
+
+          // FirebaseFirestore.instance
+          //     .collection('bangla')
+          //     .where('category', isEqualTo: 'mango')
+          //     .get()
+          //     .then((QuerySnapshot querySnapshot) {
+          //   final count = querySnapshot.size;
+          //   if (count == 0) {
+          //     print('No data found!');
+          //   }
+          //   querySnapshot.docs.forEach((doc) {
+          //     print(doc['category']);
+          //   });
+          // });
+
+          // Dummy
+
           if (snapshot.hasError) {
             return const Text('Something went wrong');
           }
@@ -124,49 +142,53 @@ class _HomePageState extends State<HomePage> {
           }
 
           return ListView(
-            children: snapshot.data!.docs.map((DocumentSnapshot document) {
-              String docID = document.id;
-              Map<String, dynamic> data =
-                  document.data()! as Map<String, dynamic>;
+            children: snapshot.data!.docs
+                .map((DocumentSnapshot document) {
+                  String docID = document.id;
 
-              return Card(
-                color: Colors.indigo,
-                elevation: 5,
-                margin: const EdgeInsets.all(15),
-                child: ListTile(
-                    title: Text(
-                      data['title'],
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    subtitle: Text(
-                      data['description'],
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            openNoteBox(docID: docID);
-                          },
-                          icon: const Icon(
-                            Icons.settings,
-                            color: Colors.white,
-                          ),
+                  Map<String, dynamic> data =
+                      document.data()! as Map<String, dynamic>;
+
+                  return Card(
+                    color: Colors.indigo,
+                    elevation: 5,
+                    margin: const EdgeInsets.all(15),
+                    child: ListTile(
+                        title: Text(
+                          data['questions'],
+                          style: const TextStyle(color: Colors.white),
                         ),
-                        IconButton(
-                          onPressed: () {
-                            fireStoreService.deleteNote(docID);
-                          },
-                          icon: const Icon(
-                            Icons.delete,
-                            color: Colors.redAccent,
-                          ),
+                        subtitle: Text(
+                          data['answer'],
+                          style: const TextStyle(color: Colors.white),
                         ),
-                      ],
-                    )),
-              );
-            }).toList(),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                openNoteBox(docID: docID);
+                              },
+                              icon: const Icon(
+                                Icons.settings,
+                                color: Colors.white,
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                fireStoreService.deleteNote(docID);
+                              },
+                              icon: const Icon(
+                                Icons.delete,
+                                color: Colors.redAccent,
+                              ),
+                            ),
+                          ],
+                        )),
+                  );
+                })
+                .toList()
+                .cast(),
           );
         },
       ),
