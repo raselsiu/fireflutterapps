@@ -17,16 +17,16 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -49,20 +49,21 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyCxz6CnmOuI0oT2icHaFBBG2DqG8HE-_yw',
+    appId: '1:791715107390:web:9b701d9eec46522ccef76f',
+    messagingSenderId: '791715107390',
+    projectId: 'rslbanglaapps',
+    authDomain: 'rslbanglaapps.firebaseapp.com',
+    storageBucket: 'rslbanglaapps.appspot.com',
+    measurementId: 'G-HQVF1CL201',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyC3U8Yuc1Ffm6-IK592Ft2H5L84M2EL2B4',
     appId: '1:791715107390:android:e9e00c13d01bd07ecef76f',
     messagingSenderId: '791715107390',
     projectId: 'rslbanglaapps',
     storageBucket: 'rslbanglaapps.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDez7tEJGwqWDJVWq8JKb5f3EL_64gquPU',
-    appId: '1:791715107390:ios:d30d555642c5b2b2cef76f',
-    messagingSenderId: '791715107390',
-    projectId: 'rslbanglaapps',
-    storageBucket: 'rslbanglaapps.appspot.com',
-    iosBundleId: 'com.example.fireapps',
   );
 }

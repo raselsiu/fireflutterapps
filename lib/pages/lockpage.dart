@@ -1,6 +1,5 @@
 import 'package:fireapps/pages/homepage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class LockPage extends StatefulWidget {
   const LockPage({super.key});
@@ -41,11 +40,12 @@ class _LockPageState extends State<LockPage> {
           style: TextStyle(color: Colors.white),
         ),
         leading: const Icon(Icons.lock),
-        backgroundColor: const Color.fromARGB(255, 13, 182, 100),
+        backgroundColor: Color.fromARGB(255, 238, 158, 207),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: SafeArea(
         child: Container(
+          color: Colors.white,
           height: double.infinity,
           width: double.infinity,
           padding: const EdgeInsets.all(50),
@@ -70,7 +70,10 @@ class _LockPageState extends State<LockPage> {
                   onPressed: () {
                     dashboard();
                   },
-                  child: const Text('Login to Dashboard'),
+                  child: const Text(
+                    'Login to Dashboard',
+                    style: TextStyle(color: Color.fromARGB(255, 214, 112, 171)),
+                  ),
                 )
               ],
             ),
